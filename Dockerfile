@@ -1,4 +1,4 @@
-FROM python:3.9-alpine3.13
+FROM python:3.10.16-alpine3.21
 LABEL maintainer="Timmy Bender"
 
 ENV PYTHONUNBUFFERED 1
