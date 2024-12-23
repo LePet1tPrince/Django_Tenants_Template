@@ -50,6 +50,7 @@ SHARED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
+    'user',
     'drf_spectacular',
 )
 TENANT_APPS = (
