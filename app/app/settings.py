@@ -50,6 +50,7 @@ SHARED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
+    'drf_spectacular',
 )
 TENANT_APPS = (
     'transactions',
@@ -155,3 +156,11 @@ TENANT_MODEL = "core.Client" # app.Model
 TENANT_DOMAIN_MODEL = "core.Domain"  # app.Model
 
 AUTH_USER_MODEL = 'core.User'
+
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema'
+}
+
+SPECTACULAR_SETTINGS = {
+    'COMPONENT_SPLIT_REQUEST': True,
+}
