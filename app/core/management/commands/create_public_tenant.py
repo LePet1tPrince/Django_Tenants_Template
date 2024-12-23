@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from user.models import Client, Domain
+from ...models import Client, Domain
 
 class Command(BaseCommand):
     help = 'Create a public tenant'

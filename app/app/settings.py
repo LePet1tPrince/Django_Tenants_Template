@@ -43,7 +43,6 @@ ALLOWED_HOSTS = []
 # ]
 SHARED_APPS = (
     'django_tenants',
-    'user',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -53,7 +52,7 @@ SHARED_APPS = (
     'core',
 )
 TENANT_APPS = (
-    'core',
+    'transactions',
 )
 
 INSTALLED_APPS = list(SHARED_APPS) + [app for app in TENANT_APPS if app not in SHARED_APPS]
@@ -151,8 +150,8 @@ DATABASE_ROUTERS = (
     'django_tenants.routers.TenantSyncRouter',
 )
 
-TENANT_MODEL = "user.Client" # app.Model
+TENANT_MODEL = "core.Client" # app.Model
 
-TENANT_DOMAIN_MODEL = "user.Domain"  # app.Model
+TENANT_DOMAIN_MODEL = "core.Domain"  # app.Model
 
 AUTH_USER_MODEL = 'core.User'
