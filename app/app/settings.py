@@ -50,6 +50,7 @@ SHARED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'core',
 )
 TENANT_APPS = (
     'core',
@@ -153,3 +154,5 @@ DATABASE_ROUTERS = (
 TENANT_MODEL = "user.Client" # app.Model
 
 TENANT_DOMAIN_MODEL = "user.Domain"  # app.Model
+
+AUTH_USER_MODEL = 'core.User'

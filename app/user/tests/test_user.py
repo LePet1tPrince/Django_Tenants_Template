@@ -3,32 +3,18 @@ Tests for the Django admin modifications
 """
 from django.test import TestCase
 from django.contrib.auth import get_user_model
-from django.urls import reverse
-from django.test import Client
 
+class ModelTests(TestCase):
+    """Test the user model"""
 
-class AdminSiteTests(TestCase):
-    """Tests for Django admin"""
-
-    def setUp(self):
-        """Create user and client"""
-        self.client = Client()
-        self.admin_user = get_user_model().objects.create_superuser(
-            email='admin@example.com',
-            password='testpass123'
+    def test_create_user_with_email_successful(self):
+        """Test creating a new user with an email is successful"""
+        inputs = {
+            'email': 'test@example.com',
+            'password': 'testpass'}
+        user = get_user_model().objects.create_user(
+            email=inputs['email'],
+            password=inputs['password']
         )
-        self.client.force_login(self.admin_user)
-        self.user = get_user_model().objects.create_user(
-            email='user@example.com',
-            password='testpass123',
-            name='Test User'
-        )
-
-    def test_users_list(self):
-        """Test that users are listed on page"""
-
-        url = reverse('admin:core_user_changelist')
-        res = self.client.get(url)
-
-        self.assertContains(res, self.user.name)
-        self.assertContains(res, self.user.email)
+        self.assertEqual(user.email, inputs['email'])
+        self.assertTrue(user.check_password(inputs['password']))
