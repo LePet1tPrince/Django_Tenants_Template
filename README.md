@@ -23,5 +23,6 @@ To reformat the project and full start over, run
 ```docker volume rm django_tenants_template_dev-db-data```
 Delete any migrations files in any apps (don't delete the migrations file itself of the __init__.py file)
 ```docker-compose build```
+```docker-compose run --rm app sh -c "python manage.py makemigrations"```
 ```docker-compose run --rm app sh -c "python manage.py create_public_tenant"```
 ```docker-compose up```

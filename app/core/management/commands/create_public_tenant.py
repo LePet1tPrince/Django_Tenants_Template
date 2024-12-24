@@ -1,11 +1,11 @@
 from django.core.management.base import BaseCommand
-from ...models import Client, Domain
+from ...models import Customer, Domain
 
 class Command(BaseCommand):
     help = 'Create a public tenant'
 
     def handle(self, *args, **kwargs):
-        tenant = Client(schema_name='public',
+        tenant = Customer(schema_name='public',
                         name='Schemas Inc.',
                         paid_until='2016-12-05',
                         on_trial=False)

@@ -152,7 +152,7 @@ DATABASE_ROUTERS = (
     'django_tenants.routers.TenantSyncRouter',
 )
 
-TENANT_MODEL = "core.Client" # app.Model
+TENANT_MODEL = "core.Customer" # app.Model
 
 TENANT_DOMAIN_MODEL = "core.Domain"  # app.Model
 
