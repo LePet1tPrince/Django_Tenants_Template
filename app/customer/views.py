@@ -2,34 +2,28 @@
 Views for the user API
 generics module gives a bunch of defaults
 """
-from rest_framework import generics, authentication, permissions
+from rest_framework import (
+    generics,
+    authentication,
+    permissions,
+    viewsets)
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.settings import api_settings
 
-from user.serializers import (
-    UserSerializer,
-    AuthTokenSerializer
+from .serializers import (
+    CustomerSerialzer,
+    DomainSerializer
 )
+from core.models import Customer, Domain
 
 
-class CreateUserView(generics.CreateAPIView):
-    """Create a new user in the system"""
-    serializer_class = UserSerializer
+class CustomerViewSet(viewsets.ModelViewSet):
+    """Create a new Customer (tenant) in the system"""
+    serializer_class = CustomerSerialzer
+    queryset = Customer.objects.all()
 
 
-class CreateTokenView(ObtainAuthToken):
-    """Create a new auth token for the user"""
-    serializer_class = AuthTokenSerializer
-    # this gives us the browsable API
-    renderer_classes = api_settings.DEFAULT_RENDERER_CLASSES
-
-
-class ManageUserView(generics.RetrieveUpdateAPIView):
-    """Manage the authenticated User"""
-    serializer_class = UserSerializer
-    authentication_classes = [authentication.TokenAuthentication]
-    permission_classes = [permissions.IsAuthenticated]
-
-    def get_object(self):
-        """Retrieve and return the authenticated user"""
-        return self.request.user
+class DomainViewSet(viewsets.ModelViewSet):
+    """Create a new Domain  in the system"""
+    serializer_class = DomainSerializer
+    queryset = Domain.objects.all()
